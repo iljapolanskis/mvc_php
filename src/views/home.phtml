@@ -1,0 +1,11 @@
+<?php
+
+use MVC\Core\Application;
+?>
+
+<?php if (Application::$app->session->flashExists('success')) : ?>
+    <div class="alert alert-success">
+        <?= Application::$app->session->getFlashMessage('success') ?>
+    </div>
+<?php endif; ?>
+<h1>Home is <?= $place ?? 'Unknown' ?></h1>

@@ -1,0 +1,28 @@
+<?php
+
+use MVC\Core\Application;
+use MVC\Core\Form\Field;
+use MVC\Core\Form\Form;
+use MVC\Core\HTTP;
+use MVC\Core\Models\Auth\User;
+
+/**
+ * @var $model User
+ */
+
+$form = new Form()
+?>
+
+<h1>Login</h1>
+
+<?php if (Application::$app->session->flashExists('error')) : ?>
+    <div class="alert alert-danger">
+        <?= Application::$app->session->getFlashMessage('error') ?>
+    </div>
+<?php endif; ?>
+
+<?= $form->begin("", HTTP::METHOD_POST) ?>
+<?= $form->field($model, 'email')->setLabel('E-Mail')->setType(Field::TYPE_EMAIL) ?>
+<?= $form->field($model, 'password')->setLabel('Password')->setType(Field::TYPE_PASSWORD) ?>
+<?= $form->submit("Login") ?>
+<?= $form->end() ?>

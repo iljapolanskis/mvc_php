@@ -1,0 +1,21 @@
+{
+    "name": "iljapolanskis/mvc_php",
+    "description": "MVC Framework From Scratch For Learning Purposes",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "src/",
+            "MVC\\Core\\": "src/core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ilja Polanskis",
+            "email": "ilja.polanskis.work@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.4"
+    }
+}

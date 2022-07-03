@@ -1,0 +1,30 @@
+<?php
+
+use MVC\Core\HTTP;
+use MVC\Core\Form\Form;
+use MVC\Core\Form\Field;
+use MVC\Core\Models\Auth\User;
+
+
+/**
+ * @var $model User
+ */
+
+$form = new Form()
+?>
+    <h1>Register</h1>
+<?= $form->begin("", HTTP::METHOD_POST) ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'firstname')->setLabel('First Name')->setType(Field::TYPE_TEXT) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'lastname')->setLabel('Last Name')->setType(Field::TYPE_TEXT) ?>
+        </div>
+    </div>
+<?= $form->field($model, 'email')->setLabel('E-Mail')->setType(Field::TYPE_EMAIL) ?>
+<?= $form->field($model, 'password')->setLabel('Password')->setType(Field::TYPE_PASSWORD) ?>
+<?= $form->field($model, 'passwordConfirm')->setLabel('Confirm Password')->setType(Field::TYPE_PASSWORD) ?>
+<?= $form->field($model, 'terms')->setLabel('Accept our Terms')->setType(Field::TYPE_CHECKBOX) ?>
+<?= $form->submit("Register") ?>
+<?= $form->end() ?>
