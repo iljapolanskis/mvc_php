@@ -54,8 +54,10 @@ class User extends DbModel
         ];
     }
 
-    public function login(): bool {
-        return false;
+    public function login(): bool
+    {
+        $user = $this->load('email', $this->email);;
+        return $user && password_verify($this->password, $user->password);
     }
 
 }

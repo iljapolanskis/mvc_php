@@ -28,7 +28,7 @@ class Router
         }
 
         if (is_string($callback)) {
-            return $this->renderViewTemplate($callback);
+            return $this->render($callback);
         }
 
         if (is_array($callback)) {
@@ -54,20 +54,13 @@ class Router
         $this->routes[$method][$path] = $callback;
     }
 
-    public function renderViewTemplate(string $template, array $params = []): array|bool|string
-    {
-        $content = str_replace('{{ content }}', $this->view($template), $this->layout($this->controller->getLayout()));
-        return $content;
-    }
-
     public function renderContent(string $content): array|bool|string
     {
         $layout = isset($this->controller) ? $this->layout($this->controller->getLayout()) : $this->layout();
         return str_replace('{{ content }}', $content, $layout);
     }
 
-
-    public function render(string $template, array $params, string $layout = 'default'): bool|string
+    public function render(string $template, array $params = [], string $layout = 'default'): bool|string
     {
         ob_start();
         $layout = $this->layout($layout);

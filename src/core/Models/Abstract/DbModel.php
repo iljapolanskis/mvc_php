@@ -3,10 +3,19 @@
 namespace MVC\Core\Models\Abstract;
 
 use MVC\Core\Application;
+use MVC\Core\Database;
 use PDOStatement;
 
 abstract class DbModel extends Model
 {
+    protected Database $db;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->db = Application::$app->db;
+    }
+
     abstract public function table(): string;
 
     abstract public function attributes(): array;
@@ -21,7 +30,14 @@ abstract class DbModel extends Model
         return implode(',', array_map(fn($attr) => ":$attr", $this->attributes()));
     }
 
-    public function load() {}
+    public function load($column, $value): static|false
+    {
+        $sql = "SELECT * FROM {$this->table()} WHERE $column = :attr";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':attr', $value);
+        $stmt->execute();
+        return $stmt->fetchObject(static::class);
+    }
 
     public function save(): bool
     {

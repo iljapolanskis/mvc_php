@@ -10,7 +10,7 @@ class CMSController extends Controller
 {
     public function index()
     {
-        return $this->router->renderContent("DDEV is Working!");
+        return $this->router->render('home');
     }
 
     public function home()

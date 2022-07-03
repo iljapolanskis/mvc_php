@@ -11,7 +11,9 @@ abstract class Model implements ValidationRules
 {
     use Validator;
 
-    public function __construct(protected array $errors = []) {}
+    protected array $errors = [];
+
+    public function __construct() {}
 
     public function populate(array $data)
     {
