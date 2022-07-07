@@ -1,3 +1,12 @@
+<?php
+
+use MVC\Core\Application;
+use MVC\Core\Navigation;
+
+$request = Application::$app->request;
+$navigation = new Navigation($request);
+?>
+
 <html class="h-100" lang="en">
 <script type="module" src="moz-extension://82173637-1314-43aa-b024-a5ae288d57f9/hook.js"></script>
 <head>
@@ -84,7 +93,7 @@
         }
 
         .cover-container {
-            max-width: 42em;
+            max-width: 52em;
         }
 
 
@@ -117,22 +126,23 @@
     </style>
 
 </head>
-<body class="d-flex h-100 text-center text-white bg-dark" style="margin-bottom: 0px;"
+<body class="d-flex h-100 text-center text-white bg-dark" style="margin-bottom: 0;"
       data-new-gr-c-s-check-loaded="8.900.0" data-gr-ext-installed="">
 
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto">
         <div>
             <a class="nav-link fw-bold" href="/">
-                <h3 class="float-md-start mb-0">Cover</h3>
+                <h3 class="float-md-start mb-0">PHP MVC From Scratch</h3>
             </a>
-            <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/home">Home</a>
-                <a class="nav-link fw-bold py-1 px-0" href="/features">Features</a>
-                <a class="nav-link fw-bold py-1 px-0" href="/contact">Contact</a>
-                <a class="nav-link fw-bold py-1 px-0" href="/login">Login</a>
-                <a class="nav-link fw-bold py-1 px-0" href="/register">Register</a>
-            </nav>
+
+            <?= $navigation->begin() ?>
+            <?= $navigation->home('/home', 'Home') ?>
+            <?= $navigation->item('/features', 'Features') ?>
+            <?= $navigation->item('/contact', 'Contact') ?>
+            <?= $navigation->item('/login', 'Login') ?>
+            <?= $navigation->item('/register', 'Register') ?>
+            <?= $navigation->end() ?>
         </div>
     </header>
 

@@ -13,8 +13,6 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $this->setLayout('other');
-
         $user = new User();
 
         if ($request->isPost()) {
@@ -34,8 +32,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $this->setLayout('other');
-
         $user = new User();
 
         if ($request->isPost()) {

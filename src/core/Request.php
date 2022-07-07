@@ -13,6 +13,11 @@ class Request
         return $position === false ? $path : substr($path, 0, $position);
     }
 
+    public function isPath(string $path): bool
+    {
+        return $this->path() === $path;
+    }
+
     public function params(): array
     {
         return $this->method() === HTTP::METHOD_GET ? filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS) : [];
